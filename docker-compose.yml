@@ -263,6 +263,18 @@ services:
       - ./hadoop.env
     networks:
       - big-data
+  
+  spark:
+    image: jupyter/all-spark-notebook:latest
+    container_name: spark
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/home/jovyan/work
+    depends_on:
+      - broker
+    networks:
+      - big-data
 
 volumes:
   hadoop_namenode:
